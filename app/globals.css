@@ -1,0 +1,209 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ivory: #F7F5EF;
+  --color-white: #FFFFFF;
+  --color-sand: #F3F0EC;
+  --color-sand-50: #F9F7F2;
+  --color-sand-200: #EEE8E0;
+  --color-dark: #202522;
+  --color-dark-text: #FFFFFF;
+  --color-ink: #202522;
+  --color-muted: #626A63;
+  --color-ivory-text: #F7F5EF;
+  --color-accent: #244C3A;
+  --color-accent-dark: #173629;
+  --color-terracotta: #B28A45;
+  --color-terracotta-400: #D2B57A;
+  --color-terracotta-500: #B28A45;
+  --color-terracotta-600: #9B7737;
+  --color-terracotta-700: #7D632F;
+  --color-forest: #244C3A;
+  --color-border: #E4E5DE;
+  --color-cream: #F7F5F1;
+  --color-charcoal-900: #202522;
+  --color-charcoal-800: #2A312D;
+  --color-charcoal-700: #4C544F;
+  --font-display: var(--font-sans), "Segoe UI", sans-serif;
+  --font-body: var(--font-sans), "Segoe UI", sans-serif;
+}
+
+@layer base {
+  html {
+    background: #ffffff;
+    color: #202522;
+    scroll-behavior: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: #ffffff;
+    color: #202522;
+    font-family: var(--font-sans), "Segoe UI", sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    letter-spacing: -0.01em;
+  }
+
+  a {
+    transition: color 150ms ease, opacity 150ms ease, background-color 150ms ease;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  ::selection {
+    background: rgba(36, 76, 58, 0.14);
+    color: #202522;
+  }
+
+  :focus-visible {
+    outline: 2px solid #244C3A;
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  h1, h2, h3, h4 {
+    margin: 0;
+    letter-spacing: -0.04em;
+    font-weight: 600;
+    line-height: 1.05;
+    color: #202522;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+@layer utilities {
+  .container-editorial {
+    width: 100%;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .container-editorial { padding-left: 1.5rem; padding-right: 1.5rem; }
+  }
+
+  @media (min-width: 1024px) {
+    .container-editorial { padding-left: 2rem; padding-right: 2rem; }
+  }
+
+  .font-display {
+    font-family: var(--font-sans), "Segoe UI", sans-serif;
+    letter-spacing: -0.04em;
+  }
+
+  .text-balance { text-wrap: balance; }
+  .text-pretty { text-wrap: pretty; }
+
+  .type-hero {
+    font-size: clamp(2.25rem, 4vw, 4.5rem);
+    line-height: 0.96;
+    letter-spacing: -0.05em;
+    font-weight: 600;
+  }
+
+  .type-section-title {
+    font-size: clamp(2rem, 3.2vw, 3.2rem);
+    line-height: 1.06;
+    letter-spacing: -0.04em;
+    font-weight: 600;
+  }
+
+  .type-lead {
+    font-size: clamp(1.0625rem, 1.1vw, 1.1875rem);
+    line-height: 1.7;
+    color: var(--color-muted);
+    max-width: 42rem;
+  }
+
+  .type-body {
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--color-muted);
+  }
+
+  .type-eyebrow,
+  .type-label,
+  .label,
+  .label-accent,
+  .label-ivory {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .type-eyebrow, .label { color: var(--color-muted); }
+  .type-label, .label-accent { color: var(--color-accent); }
+  .label-ivory { color: rgba(255,255,255,0.8); }
+
+  .text-accent { color: var(--color-accent); }
+  .text-ink { color: var(--color-ink); }
+  .text-muted { color: var(--color-muted); }
+
+  .section-pad {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .section-pad-lg {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  .text-link {
+    color: var(--color-accent);
+    font-size: 0.96rem;
+    font-weight: 600;
+  }
+
+  .text-link:hover { color: var(--color-accent-dark); }
+}
+
+@media (min-width: 768px) {
+  .section-pad { padding-top: 5rem; padding-bottom: 5rem; }
+  .section-pad-lg { padding-top: 6rem; padding-bottom: 6rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@keyframes cursor-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.animate-cursor-blink {
+  animation: cursor-blink 1s step-end infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-cursor-blink {
+    animation: none;
+  }
+}

@@ -1,0 +1,6 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#EADFC9"/>
+  <rect x="40" y="40" width="720" height="520" fill="none" stroke="#C9AA79" stroke-width="2" stroke-dasharray="8 8"/>
+  <text x="400" y="290" font-family="Georgia, serif" font-size="28" fill="#7A3D2B" text-anchor="middle">IMAGE PLACEHOLDER</text>
+  <text x="400" y="330" font-family="system-ui, sans-serif" font-size="16" fill="#B5654A" text-anchor="middle">Replace with real photo</text>
+</svg>
