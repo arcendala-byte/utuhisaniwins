@@ -50,101 +50,111 @@ export function Navbar() {
 
   return (
     <>
-      {/* Top contact bar */}
-      <div className="bg-[#202522] text-white">
-        <div className="container-editorial grid grid-cols-2 items-center gap-x-3 gap-y-3 py-3 text-xs sm:flex sm:min-h-10 sm:justify-between sm:gap-5 sm:py-2">
-          <div className="contents sm:flex sm:flex-wrap sm:items-center sm:gap-x-5 sm:gap-y-2">
-            {siteConfig.contact.phones.map((phone) => (
-              <a
-                key={phone}
-                href={`tel:${phone.replace(/\s+/g, "")}`}
-                className="inline-flex min-w-0 items-center justify-center gap-2 whitespace-nowrap text-white/85 transition-colors hover:text-white sm:justify-start"
-              >
-                <Phone size={13} aria-hidden="true" />
-                <span>{phone}</span>
-              </a>
-            ))}
+{/* Top contact bar */}
+<div className="bg-[#202522] text-white">
+  <div className="container-editorial grid grid-cols-2 items-center gap-x-3 gap-y-3 py-3 text-[11px] sm:flex sm:min-h-10 sm:flex-wrap sm:justify-between sm:gap-5 sm:py-2 sm:text-xs">
+    {/* Left side: phone and email */}
+    <div className="col-span-1 flex min-w-0 flex-col items-start gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-5 sm:gap-y-2">
+      {siteConfig.contact.phones.map((phone) => (
+        <a
+          key={phone}
+          href={`tel:${phone.replace(/\s+/g, "")}`}
+          className="inline-flex min-w-0 max-w-full items-start gap-2 text-white/85 transition-colors hover:text-white sm:items-center"
+        >
+          <Phone
+            size={13}
+            aria-hidden="true"
+            className="mt-0.5 shrink-0 sm:mt-0"
+          />
+          <span className="min-w-0 break-words [overflow-wrap:anywhere]">
+            {phone}
+          </span>
+        </a>
+      ))}
 
-            <a
-              href={`mailto:${siteConfig.contact.email}`}
-              className="col-span-2 inline-flex items-center justify-center gap-2 whitespace-nowrap text-white/85 transition-colors hover:text-white sm:justify-start"
-            >
-              <Mail size={13} aria-hidden="true" />
-              <span>{siteConfig.contact.email}</span>
-            </a>
-          </div>
+      <a
+        href={`mailto:${siteConfig.contact.email}`}
+        className="inline-flex min-w-0 max-w-full items-start gap-2 text-white/85 transition-colors hover:text-white sm:items-center"
+      >
+        <Mail
+          size={13}
+          aria-hidden="true"
+          className="mt-0.5 shrink-0 sm:mt-0"
+        />
+        <span className="min-w-0 break-words [overflow-wrap:anywhere]">
+          {siteConfig.contact.email}
+        </span>
+      </a>
+    </div>
 
-          <div className="contents sm:flex sm:items-center sm:gap-5">
-            <a
-              href={siteConfig.social.instagram.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 whitespace-nowrap text-white/85 transition-colors hover:text-white sm:justify-start"
-            >
-              <Camera size={13} aria-hidden="true" />
-              <span>Instagram</span>
-            </a>
+    {/* Right side: Instagram and Gallery */}
+    <div className="col-span-1 flex min-w-0 flex-col items-end gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-end sm:gap-x-5 sm:gap-y-2">
+      <a
+        href={siteConfig.social.instagram.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex shrink-0 items-center gap-2 text-white/85 transition-colors hover:text-white"
+      >
+        <Camera size={13} aria-hidden="true" />
+        <span>Instagram</span>
+      </a>
 
-            {/* Animated Gallery link */}
-            <Link
-              href="/gallery"
-              aria-label="Explore our gallery"
-              className="group inline-flex items-center justify-center gap-2 whitespace-nowrap text-white/85 transition-colors duration-300 hover:text-white sm:justify-start"
-            >
-              {/* Pulsing gallery icon and glowing dot */}
-              <motion.span
-                className="relative inline-flex"
-                animate={
-                  shouldReduceMotion
-                    ? { scale: 1 }
-                    : { scale: [1, 1.1, 1] }
-                }
-                transition={{
-                  duration: 2,
-                  repeat: shouldReduceMotion ? 0 : Infinity,
-                  ease: "easeInOut",
-                }}
-              >
-                <ImageIcon
-                  size={14}
-                  aria-hidden="true"
-                  className="transition-colors duration-300 group-hover:text-[#8BC5A5]"
-                />
+      <Link
+        href="/gallery"
+        aria-label="Explore our gallery"
+        className="group inline-flex shrink-0 items-center gap-2 text-white/85 transition-colors duration-300 hover:text-white"
+      >
+        <motion.span
+          className="relative inline-flex shrink-0"
+          animate={
+            shouldReduceMotion
+              ? { scale: 1 }
+              : { scale: [1, 1.1, 1] }
+          }
+          transition={{
+            duration: 2,
+            repeat: shouldReduceMotion ? 0 : Infinity,
+            ease: "easeInOut",
+          }}
+        >
+          <ImageIcon
+            size={14}
+            aria-hidden="true"
+            className="transition-colors duration-300 group-hover:text-[#8BC5A5]"
+          />
 
-                {!shouldReduceMotion && (
-                  <motion.span
-                    aria-hidden="true"
-                    className="absolute -right-1 -top-1 h-1.5 w-1.5 rounded-full bg-[#8BC5A5]"
-                    animate={{
-                      opacity: [0.4, 1, 0.4],
-                      scale: [1, 1.4, 1],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                  />
-                )}
-              </motion.span>
+          {!shouldReduceMotion && (
+            <motion.span
+              aria-hidden="true"
+              className="absolute -right-1 -top-1 h-1.5 w-1.5 rounded-full bg-[#8BC5A5]"
+              animate={{
+                opacity: [0.4, 1, 0.4],
+                scale: [1, 1.4, 1],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            />
+          )}
+        </motion.span>
 
-              {/* Label with animated underline */}
-              <span className="relative">
-                Gallery
-                <span
-                  className={cn(
-                    "absolute -bottom-1 left-0 h-px w-full origin-left bg-[#8BC5A5] transition-transform duration-300",
-                    pathname === "/gallery"
-                      ? "scale-x-100"
-                      : "scale-x-0 group-hover:scale-x-100"
-                  )}
-                />
-              </span>
-            </Link>
-          </div>
-        </div>
-      </div>
-
+        <span className="relative">
+          Gallery
+          <span
+            className={cn(
+              "absolute -bottom-1 left-0 h-px w-full origin-left bg-[#8BC5A5] transition-transform duration-300",
+              pathname === "/gallery"
+                ? "scale-x-100"
+                : "scale-x-0 group-hover:scale-x-100"
+            )}
+          />
+        </span>
+      </Link>
+    </div>
+  </div>
+</div>
       {/* Main navigation */}
       <motion.header
         initial={false}

@@ -53,14 +53,19 @@ const sections = [
     ],
   },
   {
-    number: "06",
-    title: "Donations and payment arrangements",
-    paragraphs: [
-      "The website may invite visitors to learn about supporting Utuhisaniwins. At present, online payment processing is not represented as an active feature of this website.",
-      "Submitting an inquiry or expressing an intention to donate is not a completed donation, payment confirmation, or receipt. If you wish to make a contribution, please confirm the appropriate arrangements directly through an official Utuhisaniwins contact channel.",
-      "If an online payment provider is introduced in the future, additional terms, payment instructions, and relevant provider conditions may apply. Do not send card numbers, security codes, passwords, or other sensitive payment credentials through ordinary website forms or social media messages.",
-    ],
-  },
+  number: "06",
+  title: "Donations and payment arrangements",
+  paragraphs: [
+    "Utuhisaniwins welcomes voluntary contributions to support its mission and charitable activities. Where online donations are available, visitors may use the payment methods and currencies displayed in the donation interface.",
+    "Online donations are processed through PayPal and its supported payment services. Depending on availability, eligibility, location, device, and PayPal's requirements, the checkout may offer payment using a PayPal account or an eligible credit or debit card. Available payment methods are determined by PayPal and may change without notice.",
+    "By proceeding with an online donation, you confirm that you are authorized to use the selected payment method and that the information you provide is accurate. You must not use another person's payment method without authorization or use the donation service for unlawful purposes.",
+    "A donation is not considered confirmed merely because you select an amount, open the payment window, or begin checkout. A payment must be successfully completed and confirmed by the payment provider. If checkout is cancelled, declined, interrupted, or unsuccessful, the donation may not be completed.",
+    "Donation amounts and currencies are displayed before payment confirmation. Your payment provider or financial institution may apply exchange rates, conversion charges, or other fees where applicable. Please review the amount and currency shown at checkout before confirming your contribution.",
+    "PayPal processes payments under its own terms, privacy notice, security procedures, and eligibility requirements. Utuhisaniwins does not receive your full card details through the website's ordinary donation interface. Do not send card numbers, security codes, passwords, or other sensitive payment credentials through general contact forms, email, or social media messages.",
+    "If you experience a payment error, an unexpected charge, a duplicate transaction, or a question about a completed donation, please contact Utuhisaniwins through its official Contact page and provide the transaction reference and relevant details. Do not send full payment card details. Refund requests, where applicable, will be reviewed in accordance with applicable law, the circumstances of the transaction, and any relevant payment-provider requirements.",
+    "A successful payment confirmation does not, by itself, establish eligibility for a tax deduction or guarantee the issuance of a tax receipt. Please contact Utuhisaniwins if you require confirmation or documentation concerning your contribution."
+  ],
+},
   {
     number: "07",
     title: "Intellectual property and permitted use",
@@ -80,14 +85,15 @@ const sections = [
     ],
   },
   {
-    number: "09",
-    title: "External websites and third-party services",
-    paragraphs: [
-      "This website may link to external websites, social media platforms, payment services, or other resources for convenience and additional information.",
-      "External services operate independently and may have their own terms, privacy practices, and security arrangements. Unless expressly stated, a link does not mean that Utuhisaniwins endorses every statement, service, or product on that external website.",
-      "We are not responsible for the content, availability, or practices of third-party websites that we do not control. You should review their terms before using them or providing personal information.",
-    ],
-  },
+  number: "09",
+  title: "External websites and third-party services",
+  paragraphs: [
+    "This website may link to external websites, social media platforms, payment services, or other resources for convenience and additional information.",
+    "Online donations may use PayPal and related third-party payment services. When you interact with those services, their own terms, privacy notices, security procedures, and payment conditions may apply. You should review the relevant information before proceeding.",
+    "External services operate independently and may change their features, availability, eligibility requirements, or supported payment methods. Unless expressly stated, a link does not mean that Utuhisaniwins endorses every statement, service, or product on an external website.",
+    "Utuhisaniwins does not control third-party websites or services and, to the extent permitted by applicable law, is not responsible for their independent content, availability, or practices. This does not exclude any responsibility that cannot lawfully be excluded."
+  ],
+},
   {
     number: "10",
     title: "Privacy and personal information",
@@ -137,11 +143,12 @@ export default function TermsPage() {
               Terms of use.
             </h1>
 
-            <p className="mt-6 max-w-2xl text-base leading-8 text-[#626A63] md:text-lg">
-              These terms explain the conditions for using the Utuhisaniwins
-              website, accessing its content, contacting our organization,
-              and learning about opportunities to support our work.
-            </p>
+            <p className="text-base leading-8 text-[#454C47]">
+  We want this website to be a useful and respectful source of
+  information about our mission and work. Please read these terms
+  carefully, particularly the sections covering online donations,
+  payment processing, published media, and third-party services.
+</p>
 
             <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3 border-t border-[#DCDDD5] pt-5 text-sm text-[#626A63]">
               <p>

@@ -1,4 +1,4 @@
-
+﻿
 import { NextResponse } from "next/server";
 import {
   getPayPalAccessToken,
@@ -6,7 +6,6 @@ import {
 } from "@/lib/paypal";
 
 const allowedCurrencies = ["USD", "EUR", "CHF"] as const;
-
 type Currency = (typeof allowedCurrencies)[number];
 
 type CreateOrderBody = {
@@ -26,26 +25,51 @@ type PayPalOrderResponse = {
 
 export async function POST(request: Request) {
   try {
-    let body: CreateOrderBody;
+    let parsedBody: unknown;
 
     try {
-      body = (await request.json()) as CreateOrderBody;
+      parsedBody = await request.json();
     } catch {
       return NextResponse.json(
         { error: "Invalid JSON request body." },
-        { status: 400 },
+        { status: 400 }
       );
     }
 
-    // Validate the amount.
     if (
-      body.amount === undefined ||
-      body.amount === null ||
-      body.amount === ""
+      typeof parsedBody !== "object" ||
+      parsedBody === null ||
+      Array.isArray(parsedBody)
     ) {
       return NextResponse.json(
-        { error: "A donation amount is required." },
-        { status: 400 },
+        { error: "Invalid request body." },
+        { status: 400 }
+      );
+    }
+
+    const body = parsedBody as CreateOrderBody;
+
+    if (
+      typeof body.currency !== "string" ||
+      !allowedCurrencies.includes(body.currency as Currency)
+    ) {
+      return NextResponse.json(
+        { error: "Supported PayPal currencies are USD, EUR and CHF." },
+        { status: 400 }
+      );
+    }
+
+    const currency = body.currency as Currency;
+
+    if (
+      (typeof body.amount !== "number" &&
+        typeof body.amount !== "string") ||
+      (typeof body.amount === "string" &&
+        body.amount.trim() === "")
+    ) {
+      return NextResponse.json(
+        { error: "A valid donation amount is required." },
+        { status: 400 }
       );
     }
 
@@ -54,36 +78,20 @@ export async function POST(request: Request) {
     if (
       !Number.isFinite(amount) ||
       amount < 1 ||
-      amount > 10000
+      amount > 10000 ||
+      Math.round(amount * 100) / 100 !== amount
     ) {
       return NextResponse.json(
         {
           error:
-            "Donation amount must be between 1 and 10,000.",
+            "Donation amount must be between 1 and 10,000 with no more than two decimal places.",
         },
-        { status: 400 },
+        { status: 400 }
       );
     }
 
-    // Validate the currency.
-    if (
-      typeof body.currency !== "string" ||
-      !allowedCurrencies.includes(body.currency as Currency)
-    ) {
-      return NextResponse.json(
-        {
-          error: "Supported currencies are USD, EUR and CHF.",
-        },
-        { status: 400 },
-      );
-    }
-
-    const currency = body.currency as Currency;
-
-    // Authenticate using the server-side PayPal credentials.
     const accessToken = await getPayPalAccessToken();
 
-    // Create the PayPal order.
     let orderResponse: Response;
 
     try {
@@ -109,19 +117,20 @@ export async function POST(request: Request) {
             ],
           }),
           cache: "no-store",
-        },
+        }
       );
     } catch (error) {
-      console.error("PayPal order request network error:", {
+      console.error("PayPal order request failed:", {
         message:
-          error instanceof Error
-            ? error.message
-            : String(error),
+          error instanceof Error ? error.message : String(error),
       });
 
       return NextResponse.json(
         { error: "Could not connect to PayPal to create the order." },
-        { status: 502 },
+        {
+          status: 502,
+          headers: { "Cache-Control": "no-store" },
+        }
       );
     }
 
@@ -132,14 +141,16 @@ export async function POST(request: Request) {
     try {
       orderData = JSON.parse(rawResponse) as PayPalOrderResponse;
     } catch {
-      console.error("PayPal returned an invalid order response:", {
+      console.error("PayPal returned invalid order JSON:", {
         status: orderResponse.status,
-        body: rawResponse.slice(0, 1000),
       });
 
       return NextResponse.json(
         { error: "PayPal returned an invalid order response." },
-        { status: 502 },
+        {
+          status: 502,
+          headers: { "Cache-Control": "no-store" },
+        }
       );
     }
 
@@ -152,22 +163,22 @@ export async function POST(request: Request) {
       });
 
       return NextResponse.json(
+        { error: "PayPal could not create the donation order." },
         {
-          error: "PayPal could not create the donation order.",
-        },
-        { status: 502 },
+          status: 502,
+          headers: { "Cache-Control": "no-store" },
+        }
       );
     }
 
-    return NextResponse.json({ id: orderData.id });
+    return NextResponse.json(
+      { id: orderData.id },
+      { headers: { "Cache-Control": "no-store" } }
+    );
   } catch (error) {
     console.error("Create PayPal order failed:", {
       message:
-        error instanceof Error
-          ? error.message
-          : String(error),
-      stack:
-        error instanceof Error ? error.stack : undefined,
+        error instanceof Error ? error.message : String(error),
     });
 
     return NextResponse.json(
@@ -175,7 +186,10 @@ export async function POST(request: Request) {
         error:
           "An unexpected error occurred while creating your donation.",
       },
-      { status: 500 },
+      {
+        status: 500,
+        headers: { "Cache-Control": "no-store" },
+      }
     );
   }
 }
