@@ -44,14 +44,17 @@ const sections = [
     ],
   },
   {
-    number: "05",
-    title: "Donations and payment information",
-    paragraphs: [
-      "The website may provide information about supporting Utuhisaniwins. At present, this notice does not represent that an online card-payment or donation-processing provider is connected to the website.",
-      "If donations are later accepted through a third-party payment provider, that provider may collect and process information needed to complete and verify transactions under its own terms and privacy notice. This notice should then be updated to explain the arrangement.",
-      "Do not send payment card numbers, security codes, passwords, or other payment credentials through ordinary contact forms, email, or social media messages.",
-    ],
-  },
+  number: "05",
+  title: "Donations and payment information",
+  paragraphs: [
+    "Utuhisaniwins provides an online donation facility through PayPal to make it easier for supporters to contribute to our mission. Depending on availability and eligibility, the checkout may support PayPal account payments and eligible credit or debit card payments. Supported currencies and payment options are displayed in the donation interface and may change.",
+    "When you make a donation, PayPal processes the payment and the personal information necessary to authorize, complete, secure, and verify the transaction. This information may include payment details, contact information, billing information, device or transaction data, and information required to prevent fraud or comply with applicable requirements. The information processed depends on the payment method and PayPal's procedures.",
+    "Utuhisaniwins may receive transaction-related information needed to confirm and reconcile a donation, such as the amount, currency, transaction reference, payment status, and other information made available by the payment provider. We use this information for donation administration, recordkeeping, responding to payment questions, and protecting the integrity of our donation service.",
+    "Payment information is handled through PayPal's payment services. We do not intend to collect or store full payment card numbers or card security codes through our ordinary website forms. PayPal's own privacy notice and terms govern its independent processing of personal information. Please review those documents before completing a payment.",
+    "If a payment is cancelled, declined, interrupted, or unsuccessful, the donation may not be completed. If you have a question about a transaction, an unexpected charge, or a possible duplicate payment, contact Utuhisaniwins through the official Contact page and provide the transaction reference where available. Do not send full card details, security codes, or passwords through email, contact forms, or social media.",
+    "Donation records may be retained for legitimate administrative purposes, financial recordkeeping, security, dispute resolution, and compliance with applicable legal obligations. The retention period depends on the nature of the record and the requirements that apply."
+  ],
+},
   {
     number: "06",
     title: "When information may be shared",
@@ -95,13 +98,15 @@ const sections = [
     ],
   },
   {
-    number: "11",
-    title: "External links and third-party services",
-    paragraphs: [
-      "This website may link to external websites or platforms, including social media services. Those services operate independently and have their own privacy practices. Utuhisaniwins does not control how external services collect or use information.",
-      "Please review the relevant provider's privacy notice before sharing personal information through an external service.",
-    ],
-  },
+  number: "11",
+  title: "External links and third-party services",
+  paragraphs: [
+    "This website may link to external websites and platforms, including social media services and payment providers. These services operate independently and have their own privacy practices, security arrangements, and terms of use.",
+    "Online donations are processed through PayPal and its supported payment services. When you proceed to or interact with PayPal's checkout, PayPal may collect and process personal information under its own privacy notice and applicable terms. We encourage you to review PayPal's privacy information before making a donation.",
+    "Information may be exchanged between Utuhisaniwins and the payment provider where necessary to initiate, verify, confirm, administer, or resolve issues relating to a donation. The information exchanged depends on the payment integration and the transaction.",
+    "Utuhisaniwins does not control the independent privacy practices of external services. Please review the relevant provider's privacy notice before sharing information through those services. This statement does not exclude any responsibility that cannot lawfully be excluded."
+  ],
+},
   {
     number: "12",
     title: "Changes to this notice",
